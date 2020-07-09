@@ -1,0 +1,15 @@
+output_dir: 'imgs'
+img_filename_prefix: 'img_valley_'
+# img_filename_prefix: 'img_'
+allow_overwrite: true
+
+img_dim: [300, 300]
+num_imgs: 10
+img_ind_offset: 0
+
+frequency: 100
+octaves: 7
+persistence: 0.5
+lacunarity: 2.1
+
+make_valleys: true
