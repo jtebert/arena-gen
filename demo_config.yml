@@ -9,7 +9,7 @@ img_ind_offset: 0
 
 frequency: 100
 octaves: 7
-persistence: 0.5
+persistence: 0.6
 lacunarity: 2.1
 
 make_valleys: true

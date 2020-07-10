@@ -60,3 +60,7 @@ where `CONFIG_FILE.yml` is a YAML configuration file containing the configuratio
 ## Notes
 
 Because of the nature of Perlin and Simplex noise, they are deterministic. That means that if you provide the same parameters, you'll get the same image out. Generating different images is done by specifying an "offset" for the coordinates. That's done here with the `img_ind_offset` parameters. That means that images generated with the same parameters *and the same index*, will be the same, but you can generate new images by changing this offset.
+
+Useful reading:
+
+- [Making maps with noise functions](https://www.redblobgames.com/maps/terrain-from-noise/)

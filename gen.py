@@ -29,6 +29,8 @@ def main(config_file):
 
     make_valleys = PARAMS.get('make_valleys', False)
 
+    ridge_octaves = 1
+
     worlds = []
     for img_ind in range(img_ind_offset, num_imgs+img_ind_offset):
         world = np.zeros(img_dims)
@@ -47,17 +49,17 @@ def main(config_file):
                     abs_noise = noise.pnoise2(
                         x / frequency,  # x
                         y / frequency,  # y
-                        octaves=1,
+                        octaves=min(ridge_octaves, octaves),
                         persistence=persistence,
                         lacunarity=lacunarity,
                         repeatx=img_dims[0],
                         repeaty=img_dims[1],
                         base=img_ind)
-                    if octaves > 1:
+                    if octaves > ridge_octaves:
                         other_noise = noise.pnoise2(
-                            x / (frequency*persistence),  # x
-                            y / (frequency*persistence),  # y
-                            octaves=octaves-1,
+                            x / (frequency*lacunarity**ridge_octaves),  # x
+                            y / (frequency*lacunarity**ridge_octaves),  # y
+                            octaves=octaves-ridge_octaves,
                             persistence=persistence,
                             lacunarity=lacunarity,
                             repeatx=img_dims[0],
@@ -65,7 +67,7 @@ def main(config_file):
                             base=img_ind)
                     else:
                         other_noise = 0
-                    world[x, y] = abs(abs_noise)+other_noise
+                    world[x, y] = abs(abs_noise)*.9 + persistence**(ridge_octaves-1) * other_noise
                 else:
                     world[x, y] = tmp_noise
         worlds.append(world)
