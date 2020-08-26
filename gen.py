@@ -27,6 +27,7 @@ def main(config_file):
     persistence = PARAMS['persistence']  # how amplitude changes/scales over octaves
     lacunarity = PARAMS['lacunarity']  # how frequency changes/scales over octaves
 
+    normalize_over_all = PARAMS.get('normalize_over_all', False)
     make_valleys = PARAMS.get('make_valleys', False)
 
     ridge_octaves = 1
@@ -74,13 +75,16 @@ def main(config_file):
 
         print(world.min(), world.max())
 
-    # Rescale to fit in [0, 255]
-    range_in = [min([w.min() for w in worlds]),
-                max([w.max() for w in worlds])]
+    if normalize_over_all:
+        # Rescale to fit in [0, 255]
+        range_in = [min([w.min() for w in worlds]),
+                    max([w.max() for w in worlds])]
     range_out = [0, 255]
 
     for ind, world in enumerate(worlds):
         img_ind = ind + img_ind_offset
+        if not normalize_over_all:
+            range_in = [world.min(), world.max()]
         world_scaled = (world-range_in[0]) * (range_out[1]-range_out[0]) / \
             (range_in[1]-range_in[0]) + \
             range_out[0]

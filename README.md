@@ -2,6 +2,10 @@
 
 *Programmatically generated environments for gridsim projects*
 
+This generates rectangular grayscale images based on Perlin noise, using the Python [noise](https://pypi.org/project/noise/) package.
+
+This is designed to generate environments (images) for use with [Gridsim](https://github.com/jtebert/gridsim).
+
 ## Installation and setup
 
 Create a Python3 virtual environment:
@@ -56,6 +60,9 @@ where `CONFIG_FILE.yml` is a YAML configuration file containing the configuratio
   Amplitude of each additional octave (relative to the preceding octave). This should be > 0 and < 1.
 - `lacunarity` (float):
   Frequency (scale) of each layer (relative to the previous octave). This should be > 1.
+
+- `make_valleys` (bool, optional):
+  Whether to generate valleys (inverted ridges), instead of completely random noise/hills. Defaults to `False`.
 
 ## Notes
 

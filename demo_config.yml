@@ -12,4 +12,6 @@ octaves: 7
 persistence: 0.6
 lacunarity: 2.1
 
+normalize_over_all: false
+
 make_valleys: true
