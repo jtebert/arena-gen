@@ -14,7 +14,7 @@ def main(config_file):
 
     # Make output directory
     output_dir = PARAMS.get('output_dir', '')
-    img_filename_prefix = PARAMS.get('img_filename_prefix', '')
+    img_filename_format = PARAMS.get('img_filename_format', '')
     allow_overwrite = PARAMS.get('allow_overwrite', False)
     os.makedirs(output_dir, exist_ok=True)
 
@@ -90,7 +90,10 @@ def main(config_file):
             range_out[0]
         world_scaled = np.uint8(world_scaled)
         # Save image to file
-        output_file = os.path.join(output_dir, img_filename_prefix+str(img_ind).zfill(3)+'.png')
+        img_filename = img_filename_format.format(
+            frequency=frequency, octaves=octaves, persistence=persistence, lacunarity=lacunarity,
+            img_ind=img_ind) + '.png'
+        output_file = os.path.join(output_dir, img_filename)
         if not allow_overwrite and os.path.exists(output_file):
             # Overwriting isn't allowed, but file already exists
             raise IOError(f'File "{output_file}" exists, but overwriting is not allowed.')

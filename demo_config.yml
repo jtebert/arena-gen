@@ -1,17 +1,22 @@
-output_dir: 'imgs'
-img_filename_prefix: 'img_valley_'
-# img_filename_prefix: 'img_'
+output_dir: '../grid-decisions/test-imgs/'
+# output_dir: 'imgs/'
+
+# Allowed parameters to include in the filename format are:
+# - frequency (same as parameter below)
+# - octaves
+# - persistence
+# - lacunarity
+# - img_ind (index of image, as configured by num_imgs and img_ind_offset)
+img_filename_format: 'img_oct={octaves}_{img_ind:03d}'
 allow_overwrite: true
 
-img_dim: [300, 300]
+img_dim: [384,384]
 num_imgs: 10
-img_ind_offset: 0
+img_ind_offset: 1
 
-frequency: 100
-octaves: 7
-persistence: 0.6
-lacunarity: 2.1
+frequency: 200 # Starting frequency
+octaves: 4 # Number of iterations
+persistence: 0.5 # How intensity changes with each octave
+lacunarity: 2.1 # How scale changes with each octave
 
-normalize_over_all: false
-
-make_valleys: true
+make_valleys: false
