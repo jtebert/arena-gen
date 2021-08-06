@@ -1,5 +1,5 @@
-# output_dir: '../grid-decisions/test-imgs/'
-output_dir: 'imgs/'
+# output_dir: '../kilosim-gridbots-decisions/imgs/'
+output_dir: '../grid-decisions/test-imgs/'
 
 # Allowed parameters to include in the filename format are:
 # - frequency (same as parameter below)
@@ -7,12 +7,14 @@ output_dir: 'imgs/'
 # - persistence
 # - lacunarity
 # - img_ind (index of image, as configured by num_imgs and img_ind_offset)
-img_filename_format: '{img_ind:03d}_oct={octaves}'
-# img_filename_format: 'img_oct={octaves}_{img_ind:03d}'
+# img_filename_format: '{img_ind:03d}_oct={octaves}'
+img_filename_format: 'img_oct={octaves}_{img_ind:03d}'
+
 allow_overwrite: true
 
 img_dim: [384,384]
-num_imgs: 10
+num_imgs: 5
+# num_imgs: 100
 img_ind_offset: 1
 
 frequency: 200 # Starting frequency
